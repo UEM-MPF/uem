@@ -81,14 +81,46 @@
     <h1>Unidad de Equipos Móviles</h1>
     <p>Gestión y soporte tecnológico de dispositivos móviles</p>
 
-    <!-- CAMBIÁ LA URL DE href POR LA WEB QUE QUIERAS -->
-    <a href="https://script.google.com/macros/s/AKfycbz2UL9RkV984LitcWn9vPytbffb7nZXhhXs4hX-uFn4DHGfxOR5Mj-ksFI5PQY5UIN-/exec" class="btn" target="_blank">
+    <!-- BOTÓN CON VALIDACIÓN DE USUARIO Y CONTRASEÑA -->
+    <button class="btn" onclick="mostrarLogin()">
       Gestión de Passwords
-    </a>
+    </button>
 
     <footer>
       © 2026 Unidad de Equipos Móviles
     </footer>
   </div>
+
+  <!-- MODAL LOGIN -->
+  <div id="loginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); align-items:center; justify-content:center;">
+    <div style="background:#111; padding:25px; border-radius:12px; width:300px; text-align:center; box-shadow:0 0 20px #00e5ff;">
+      <h3 style="color:#00e5ff; margin-bottom:15px;">Acceso restringido</h3>
+      <input id="user" type="text" placeholder="Usuario" style="width:100%; padding:10px; margin-bottom:10px; border-radius:6px; border:none;" />
+      <input id="pass" type="password" placeholder="Contraseña" style="width:100%; padding:10px; margin-bottom:15px; border-radius:6px; border:none;" />
+      <button class="btn" onclick="validarLogin()">Ingresar</button>
+      <p id="error" style="color:#ff5252; font-size:0.8rem; margin-top:10px; display:none;">Usuario o contraseña incorrectos</p>
+    </div>
+  </div>
+
+  <script>
+    const USUARIO = "M0viles";
+    const PASSWORD = "3quip0$";
+    const DESTINO = "https://script.google.com/macros/s/AKfycbz2UL9RkV984LitcWn9vPytbffb7nZXhhXs4hX-uFn4DHGfxOR5Mj-ksFI5PQY5UIN-/exec"; // CAMBIAR POR TU URL REAL
+
+    function mostrarLogin() {
+      document.getElementById('loginModal').style.display = 'flex';
+    }
+
+    function validarLogin() {
+      const u = document.getElementById('user').value;
+      const p = document.getElementById('pass').value;
+
+      if (u === USUARIO && p === PASSWORD) {
+        window.location.href = DESTINO;
+      } else {
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+  </script>
 </body>
 </html>
